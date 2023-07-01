@@ -8,5 +8,4 @@ import { CatsModule } from './cats/cats.module';
   controllers: [AppController],
   providers: [AppService],
 })
-
 export class AppModule {}

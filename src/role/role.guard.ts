@@ -3,15 +3,15 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class RoleGuard implements CanActivate {
-	canActivate(
-		context: ExecutionContext,
-	): boolean | Promise<boolean> | Observable<boolean> {
-		const request = context.switchToHttp().getRequest();
+  canActivate(
+    context: ExecutionContext,
+  ): boolean | Promise<boolean> | Observable<boolean> {
+    const request = context.switchToHttp().getRequest();
 
-		if (request.headers.role === 'catlord') {
-			return true;
-		}
+    if (request.headers.role === 'catlord') {
+      return true;
+    }
 
-		return false;
-	}
+    return false;
+  }
 }
