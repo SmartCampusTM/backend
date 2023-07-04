@@ -12,10 +12,10 @@ import {
   ValidationPipe,
   UseGuards,
 } from '@nestjs/common';
-import { CatsService } from './cats.service';
-import { CreateCatDto } from './dto/create-cat.dto';
-import { UpdateCatDto } from './dto/update-cat.dto';
-import { RoleGuard } from '../role/role.guard';
+import { CatsService } from '@/services/cats/cats.service';
+import { CreateCatDto } from '@/modules/cats/dtos/create-cat.dto';
+import { UpdateCatDto } from '@/modules/cats/dtos/update-cat.dto';
+import { RoleGuard } from '@/guards/role.guard';
 
 @Controller('cats')
 export class CatsController {
