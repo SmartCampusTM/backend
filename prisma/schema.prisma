@@ -20,3 +20,14 @@ model User {
   permission     String?
   dateOfBirth    DateTime?
 }
+
+model Student {
+  id             String    @id @default(auto()) @map("_id") @db.ObjectId
+  email          String    @unique
+  name           String?
+  lastName       String?
+  password       String?
+  profilePicture String?
+  permission     String?
+  dateOfBirth    DateTime?
+  } 
