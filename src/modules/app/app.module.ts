@@ -7,11 +7,18 @@ import { UsersController } from '@/controllers/users/users.controller';
 import { UsersService } from '@/services/users/users.service';
 import { CatsController } from '@/controllers/cats/cats.controller';
 import { CatsService } from '@/services/cats/cats.service';
-import { PrismaService } from '@/services/prisma/prisma.service';
+import { ClassesModule } from '@/modules/classes/classes.module';
+import { ClassesController } from '@/controllers/classes/classes.controller';
+import { ClassesService } from '@/services/classes/classes.service';
 
 @Module({
-  imports: [UsersModule, CatsModule],
-  controllers: [AppController, UsersController, CatsController],
-  providers: [AppService, UsersService, CatsService, PrismaService],
+  imports: [UsersModule, CatsModule, ClassesModule],
+  controllers: [
+    AppController,
+    UsersController,
+    CatsController,
+    ClassesController,
+  ],
+  providers: [AppService, UsersService, CatsService, ClassesService],
 })
 export class AppModule {}
