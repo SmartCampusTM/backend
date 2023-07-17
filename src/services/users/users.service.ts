@@ -1,9 +1,12 @@
 import { Injectable } from '@nestjs/common';
+import { PrismaClient } from '@prisma/client';
+
+const prisma = new PrismaClient();
 
 @Injectable()
 export class UsersService {
-
-    default(): { message: string } {
-        return { "message": "used for retrieving relevant user data."};
-    }
+  async getUsers(): Promise<object[]> {
+    const allUsers = await prisma.user.findMany();
+    return allUsers;
+  }
 }
