@@ -1,4 +1,4 @@
-name: Linting
+name: Lint
 
 on:
   push:
@@ -7,19 +7,22 @@ on:
     branches: [master]
 
 jobs:
-  build:
+  lint:
     name: Linting
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+      - uses: Adzz/jest_test_action@v1.0.0
         with:
-          fetch-depth: 0
-      
-      - name: Linting
-        uses: github/super-linter@v3
-        env:
-          VALIDATE_ALL_CODEBASE: true
-          DEFAULT_BRANCH: master
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          package-manager: npm
+          command: lint
+          
+  format:
+    name: Formatting
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: Adzz/jest_test_action@v1.0.0
+        with:
+          package-manager: npm
+          command: format
