@@ -28,7 +28,6 @@ model Student {
   lastName       String?
   password       String?
   profilePicture String?
-  permission     String?
   dateOfBirth    DateTime?
 }
 
@@ -39,6 +38,5 @@ model Teacher {
   lastName       String?
   password       String?
   profilePicture String?
-  permission     String?
   dateOfBirth    DateTime?
 }
