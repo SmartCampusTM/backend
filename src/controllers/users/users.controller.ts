@@ -1,4 +1,3 @@
-import { UsersService } from '@/services/users/users.service';
 import {
   Controller,
   Get,
@@ -9,7 +8,10 @@ import {
   HttpCode,
   Delete,
 } from '@nestjs/common';
+
 import { User } from '@prisma/client';
+
+import { UsersService } from '@services/users/users.service';
 
 @Controller('users')
 export class UsersController {

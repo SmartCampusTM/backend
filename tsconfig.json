@@ -19,7 +19,10 @@
     "noFallthroughCasesInSwitch": true,
     "paths": {
       "@/*": ["src/*"],
-      // "@Helper/*": ["src/common/helper/*"]
+      "@controllers/*": ["src/controllers/*"],
+      "@guards/*": ["src/guards/*"],
+      "@modules/*": ["src/modules/*"],
+      "@services/*": ["src/services/*"],
     }
   }
 }

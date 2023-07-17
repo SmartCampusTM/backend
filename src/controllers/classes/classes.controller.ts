@@ -1,4 +1,3 @@
-import { ClassesService } from '@/services/classes/classes.service';
 import {
   Controller,
   Delete,
@@ -8,6 +7,8 @@ import {
   Patch,
   Post,
 } from '@nestjs/common';
+
+import { ClassesService } from '@services/classes/classes.service';
 
 @Controller('classes')
 export class ClassesController {
