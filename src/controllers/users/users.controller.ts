@@ -1,5 +1,5 @@
 import { UsersService } from '@/services/users/users.service';
-import { Controller, Get, Header, Param, Post, HttpCode } from '@nestjs/common';
+import { Controller, Get, Header,Patch, Param, Post, HttpCode } from '@nestjs/common';
 
 @Controller('users')
 export class UsersController {
@@ -41,5 +41,11 @@ export class UsersController {
   @Get(':id')
   getUser(@Param('id') id: string): { message: string } {
     return { message: `User ${id} found` };
+  }
+
+  @Patch(':id')
+  @HttpCode(200)
+  getUserPatch(): string {
+    return 'OK';
   }
 }
