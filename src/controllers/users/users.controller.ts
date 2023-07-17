@@ -23,7 +23,7 @@ export class UsersController {
 
   @Post()
   @HttpCode(201)
-  getUserPost(): object[] {
+  createUser(): object[] {
     return [
       {
         id: '3b68d9d3-e9a2-4c4a-b2d6-6d5a3201f717',
