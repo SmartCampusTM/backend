@@ -30,4 +30,4 @@ model Student {
   profilePicture String?
   permission     String?
   dateOfBirth    DateTime?
-  } 
+}
