@@ -1,5 +1,14 @@
 import { UsersService } from '@/services/users/users.service';
-import { Controller, Get, Header,Patch, Param, Post, HttpCode } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Header,
+  Patch,
+  Param,
+  Post,
+  HttpCode,
+  Delete,
+} from '@nestjs/common';
 
 @Controller('users')
 export class UsersController {
@@ -45,7 +54,12 @@ export class UsersController {
 
   @Patch(':id')
   @HttpCode(200)
-  getUserPatch(): string {
+  patchUser(): string {
+    return 'OK';
+  }
+
+  @Delete(':id')
+  deleteUser(): string {
     return 'OK';
   }
 }
