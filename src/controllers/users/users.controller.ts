@@ -7,8 +7,9 @@ export class UsersController {
 
   @Get()
   @Header('Content-Type', 'application/json')
-  getDefault(): { message: string } {
-    return this.usersService.default();
+  async getUsers(): Promise<object[]> {
+    const users = await this.usersService.getUsers();
+    return users;
   }
 
   @Get(':id')
