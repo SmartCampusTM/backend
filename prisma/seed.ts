@@ -8,7 +8,11 @@ async function main() {
     create: {
       email: 'alice@prisma.io',
       name: 'Alice',
+      lastName: 'Doe',
       password: '12345678',
+      profilePicture: 'https://assets.smartcampus.com/users/Abc12Xyz.jpg',
+      permission: 'admin',
+      dateOfBirth: new Date(Date.now())
     },
   });
 
@@ -18,7 +22,11 @@ async function main() {
     create: {
       email: 'bob@prisma.io',
       name: 'Bob',
+      lastName: 'Doe',
       password: '12345678',
+      profilePicture: 'https://assets.smartcampus.com/users/Abc12Xyz.jpg',
+      permission: 'admin',
+      dateOfBirth: new Date(Date.now())
     },
   });
 
