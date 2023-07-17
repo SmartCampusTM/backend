@@ -1,5 +1,13 @@
 import { ClassesService } from '@/services/classes/classes.service';
-import { Controller, Delete, Get, Header, HttpCode, Patch, Post } from '@nestjs/common';
+import {
+  Controller,
+  Delete,
+  Get,
+  Header,
+  HttpCode,
+  Patch,
+  Post,
+} from '@nestjs/common';
 
 @Controller('classes')
 export class ClassesController {
@@ -35,7 +43,7 @@ export class ClassesController {
     return 'OK';
   }
 
-  @Delete(":id")
+  @Delete(':id')
   deleteClass(): string {
     return 'OK';
   }

@@ -1,4 +1,4 @@
- import { Module } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { CatsService } from '@/services/cats/cats.service';
 import { CatsController } from '@/controllers/cats/cats.controller';
 
