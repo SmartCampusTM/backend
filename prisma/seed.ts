@@ -11,8 +11,7 @@ async function main() {
       lastName: 'Doe',
       password: '12345678',
       profilePicture: 'https://assets.smartcampus.com/users/Abc12Xyz.jpg',
-      permission: 'admin',
-      dateOfBirth: new Date(Date.now())
+      permission: 'admin'
     },
   });
 
@@ -25,8 +24,7 @@ async function main() {
       lastName: 'Doe',
       password: '12345678',
       profilePicture: 'https://assets.smartcampus.com/users/Abc12Xyz.jpg',
-      permission: 'admin',
-      dateOfBirth: new Date(Date.now())
+      permission: 'admin'
     },
   });
 
