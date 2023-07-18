@@ -1,10 +1,11 @@
-import { CreateUserDto } from '@/modules/users/dtos/create-user.dto';
-import { UpdateUserDto } from '@/modules/users/dtos/update-user.dto';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 
 import { User } from '@prisma/client';
 
 import { PrismaService } from '@services/prisma/prisma.service';
+
+import { CreateUserDto } from '@/modules/users/dtos/create-user.dto';
+import { UpdateUserDto } from '@/modules/users/dtos/update-user.dto';
 
 @Injectable()
 export class UsersService {
@@ -30,8 +31,14 @@ export class UsersService {
     } catch (error) {
       throw new HttpException(
         {
-          status: HttpStatus.NOT_FOUND,
-          error: 'User not found',
+          status:
+            error.code == 'P2023'
+              ? HttpStatus.BAD_REQUEST
+              : HttpStatus.INTERNAL_SERVER_ERROR,
+          error:
+            error.code == 'P2023'
+              ? error.meta.message
+              : 'Internal server error',
         },
         HttpStatus.NOT_FOUND,
       );
@@ -52,7 +59,7 @@ export class UsersService {
     });
   }
 
-  async deleteUser(id: string): Promise<String> {
+  async deleteUser(id: string): Promise<string> {
     await this.prisma.user.delete({
       where: {
         id: id,
