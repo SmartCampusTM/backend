@@ -65,6 +65,7 @@ export class UsersService {
         id: id,
       },
     });
+
     return 'User deleted';
   }
 }
