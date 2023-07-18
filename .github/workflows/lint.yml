@@ -34,10 +34,10 @@ jobs:
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "work@cedricverlinden.com"
-          git checkout -b ${{ github.ref_name }}
+          git switch ${{ github.ref_name }}
           git add -A
           git commit -m "Linting changes"
-          git push origin ${{ github.base_ref }}
+          git push
           
   format:
     name: Formatting
@@ -66,7 +66,7 @@ jobs:
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "work@cedricverlinden.com"
-          git checkout -b ${{ github.ref_name }}
+          git switch ${{ github.ref_name }}
           git add -A
           git commit -m "Formatting changes"
-          git push origin ${{ github.ref_name }}
+          git push
