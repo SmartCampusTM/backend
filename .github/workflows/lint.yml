@@ -36,7 +36,7 @@ jobs:
           git config --global user.email "work@cedricverlinden.com"
           git add .
           git commit -m "Linting changes"
-          git push origin ${{ github.ref_name }}
+          git push origin ${{ github.base_ref }}
           
   format:
     name: Formatting
@@ -67,4 +67,4 @@ jobs:
           git config --global user.email "work@cedricverlinden.com"
           git add .
           git commit -m "Formatting changes"
-          git push origin ${{ github.ref_name }}
+          git push origin ${{ github.base_ref }}
