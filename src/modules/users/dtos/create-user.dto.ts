@@ -1,4 +1,4 @@
-import { MinLength, IsEnum, IsEmail, IsDate, IsFQDN, IsUrl } from 'class-validator';
+import { MinLength, IsEnum, IsEmail, IsUrl } from 'class-validator';
 
 export class CreateUserDto {
   @IsEmail()

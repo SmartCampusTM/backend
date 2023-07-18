@@ -1,4 +1,5 @@
 import { CreateUserDto } from '@/modules/users/dtos/create-user.dto';
+import { UpdateUserDto } from '@/modules/users/dtos/update-user.dto';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 
 import { User } from '@prisma/client';
@@ -20,7 +21,7 @@ export class UsersService {
   }
 
   async findUser(id: string): Promise<User | null> {
-    try { 
+    try {
       return await this.prisma.user.findUnique({
         where: {
           id: id,
@@ -35,5 +36,28 @@ export class UsersService {
         HttpStatus.NOT_FOUND,
       );
     }
+  }
+
+  async updateUser(
+    id: string,
+    updateUserDto: UpdateUserDto,
+  ): Promise<User | null> {
+    const newUser = { ...updateUserDto };
+    console.log(newUser);
+    return await this.prisma.user.update({
+      where: {
+        id: id,
+      },
+      data: newUser,
+    });
+  }
+
+  async deleteUser(id: string): Promise<String> {
+    await this.prisma.user.delete({
+      where: {
+        id: id,
+      },
+    });
+    return 'User deleted';
   }
 }

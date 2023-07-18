@@ -1,4 +1,6 @@
+import { UpdateCatDto } from '@/modules/cats/dtos/update-cat.dto';
 import { CreateUserDto } from '@/modules/users/dtos/create-user.dto';
+import { UpdateUserDto } from '@/modules/users/dtos/update-user.dto';
 import {
   Controller,
   Get,
@@ -10,6 +12,7 @@ import {
   Delete,
   ValidationPipe,
   Body,
+  ParseIntPipe,
 } from '@nestjs/common';
 
 import { User } from '@prisma/client';
@@ -26,7 +29,6 @@ export class UsersController {
   }
 
   @Get()
-  @Header('Content-Type', 'application/json')
   async findAll(): Promise<User[] | null> {
     return await this.usersService.users();
   }
@@ -38,12 +40,12 @@ export class UsersController {
 
   @Patch(':id')
   @HttpCode(200)
-  update(): string {
-    return 'OK';
+  async update(@Param('id') id: string, @Body() UpdateUserDto: UpdateUserDto): Promise<User | null> {
+    return this.usersService.updateUser(id, UpdateUserDto);
   }
 
   @Delete(':id')
-  delete(): string {
-    return 'OK';
+  async delete(@Param('id') id: string): Promise<String> {
+    return this.usersService.deleteUser(id);
   }
 }
