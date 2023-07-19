@@ -5,26 +5,39 @@ import { AppController } from '@controllers/app/app.controller';
 import { AppService } from '@/services/app/app.service';
 import * as request from 'supertest';
 
+jest.mock('@services/app/app.service');
+
 describe('AppController', () => {
   let controller: AppController;
+  let service: AppService;
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
+    const moduleRef = await Test.createTestingModule({
       imports: [],
       controllers: [AppController],
       providers: [AppService],
     }).compile();
 
-    controller = module.get<AppController>(AppController);
+    controller = moduleRef.get<AppController>(AppController);
+    service = moduleRef.get<AppService>(AppService);
+    jest.clearAllMocks();
   });
 
-  it('should be defined', () => {
-    expect(controller).toBeDefined();
-  });
+  describe('getHello', () => {
+    describe('when getHello is called', () => {
+      let hello: string;
 
-  describe('HelloWorld', () => {
-    it('should return a status code of 200', () => {
-      request(controller.HelloWorld()).get('/').expect(200);
-    });
-  });
+      beforeEach(async () => {
+        hello = await controller.HelloWorld();
+      });
+
+      test('then it should call AppService', () => {
+        expect(service.getHello).toHaveBeenCalled();
+      });
+
+      test('then it should return a \'Hello World\' string', () => {
+        expect(hello).toEqual('Hello World');
+      });
+    })
+  })
 });
