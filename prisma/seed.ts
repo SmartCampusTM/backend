@@ -1,34 +1,31 @@
 import { PrismaClient } from '@prisma/client';
+import { users } from './data/users';
+import { CreateUserDto } from '@/modules/users/dtos/create-user.dto';
 const prisma = new PrismaClient();
 
 async function main() {
-  const alice = await prisma.user.upsert({
-    where: { email: 'alice@prisma.io' },
-    update: {},
-    create: {
-      email: 'alice@prisma.io',
-      name: 'Alice',
-      lastName: 'Doe',
-      password: '12345678',
-      profilePicture: 'https://assets.smartcampus.com/users/Abc12Xyz.jpg',
-      permission: 'admin'
-    },
-  });
+  await prisma.user.deleteMany();
+  await prisma.student.deleteMany();
+  await prisma.teacher.deleteMany();
 
-  const bob = await prisma.user.upsert({
-    where: { email: 'bob@prisma.io' },
-    update: {},
-    create: {
-      email: 'bob@prisma.io',
-      name: 'Bob',
-      lastName: 'Doe',
-      password: '12345678',
-      profilePicture: 'https://assets.smartcampus.com/users/Abc12Xyz.jpg',
-      permission: 'admin'
-    },
-  });
+  const usersToCreate: CreateUserDto[] = users();
 
-  console.log({ alice, bob });
+  await prisma.user.createMany({
+    data: usersToCreate,
+  });
+  console.log('Users created');
+
+  const students: CreateUserDto[] = usersToCreate.filter((user) => user.permission === 'student').map((user) => { const { permission, ...rest } = user; return rest as CreateUserDto });
+  await prisma.student.createMany({
+    data: students
+  })
+  console.log('Students created');
+
+  const teachers: CreateUserDto[] = usersToCreate.filter((user) => user.permission === 'teacher').map((user) => { const { permission, ...rest } = user; return rest as CreateUserDto });
+  await prisma.teacher.createMany({
+    data: teachers
+  })
+  console.log('Teachers created');
 }
 
 main()
