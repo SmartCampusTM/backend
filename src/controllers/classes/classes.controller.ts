@@ -2,10 +2,8 @@ import {
   Controller,
   Delete,
   Get,
-  Header,
-  HttpCode,
   Patch,
-  Post,
+  Post
 } from '@nestjs/common';
 
 import { ClassesService } from '@services/classes/classes.service';
@@ -14,38 +12,28 @@ import { ClassesService } from '@services/classes/classes.service';
 export class ClassesController {
   constructor(private readonly classesService: ClassesService) {}
 
-  @Get()
-  @Header('Content-Type', 'application/json')
-  getClassesGet(): string {
-    return 'Ok';
-  }
-
-  @Get()
-  @HttpCode(200)
-  getClasses(): string {
-    return 'Ok';
-  }
-
   @Post()
-  @HttpCode(201)
-  addClass(): string {
-    return 'Ok';
+  create(): string {
+    return this.classesService.createClass();
+  }
+
+  @Get()
+  findAll(): string {
+    return this.classesService.classes();
   }
 
   @Get(':id')
-  @HttpCode(200)
-  getClass(): string {
-    return 'OK';
+  findOne(): string {
+    return this.classesService.findClass();
   }
 
   @Patch(':id')
-  @HttpCode(201)
-  patchClass(): string {
-    return 'OK';
+  update(): string {
+    return this.classesService.updateClass();
   }
 
   @Delete(':id')
-  deleteClass(): string {
-    return 'OK';
+  delete(): string {
+    return this.classesService.deleteClass();
   }
 }
