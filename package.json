@@ -2,24 +2,42 @@
   "name": "backend",
   "version": "0.0.1",
   "description": "",
-  "author": "",
+  "author": "SmartCampus Dev Team",
+  "contributors": [
+    "CedricVerlinden",
+    "J4spr",
+    "DisECtRy"
+  ],
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "build": "nest build",
-    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "dev:prepare": "npx prisma generate && npx prisma db push && npx prisma db seed",
+    "//": "-- PREP DEV",
+    "prep": "npm ci && echo Run 'npm run prisma:all' after the container has started! && npm run db:up",
+    
+    "//": "-- DATABASE",
+    "prisma:all": "npx prisma generate && npx prisma db push && npx prisma db seed",
+    "prisma:schema": "npx prisma generate && npx prisma db push",
+    "db:up": "docker-compose up -d",
+    "db:down": "docker stop mongo-dev",
+
+    "//": "-- STARTING",
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
-    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+
+    "//": "-- PRE GIT",
+    "git:prepare": "npm run lint && npm run format && npm run test",
+    "git:lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+    "git:format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "git:build": "nest build",
+
+    "//": "-- TESTING",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json",
-    "git:prepare": "npm run lint && npm run format"
+    "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
