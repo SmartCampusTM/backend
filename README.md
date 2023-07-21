@@ -7,7 +7,7 @@ $ npm run prep
 
 Then we need to generate, push, and seed the database
 ```bash
-$ npm run db:prisma
+$ npm run prisma:all
 ```
 
 Now we can start the server while watching it
