@@ -1,9 +1,8 @@
-import { Test, TestingModule } from '@nestjs/testing';
+import { Test } from '@nestjs/testing';
 
 import { AppController } from '@controllers/app/app.controller';
 
 import { AppService } from '@/services/app/app.service';
-import * as request from 'supertest';
 
 jest.mock('@services/app/app.service');
 
@@ -35,9 +34,9 @@ describe('AppController', () => {
         expect(service.getHello).toHaveBeenCalled();
       });
 
-      test('then it should return a \'Hello World\' string', () => {
+      test("then it should return a 'Hello World' string", () => {
         expect(hello).toEqual('Hello World');
       });
-    })
-  })
+    });
+  });
 });

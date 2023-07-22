@@ -29,7 +29,7 @@
     "//": "-- PRE GIT",
     "git:prepare": "npm run lint && npm run format && npm run test",
     "git:lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
-    "git:format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "git:format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\" && npx prisma format",
     "git:build": "nest build",
 
     "//": "-- TESTING",

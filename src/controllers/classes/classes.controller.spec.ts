@@ -1,7 +1,8 @@
 import { Test } from '@nestjs/testing';
 
-import { ClassesService } from '@services/classes/classes.service';
 import { ClassesController } from '@controllers/classes/classes.controller';
+
+import { ClassesService } from '@services/classes/classes.service';
 
 jest.mock('@services/classes/classes.service');
 
@@ -23,7 +24,7 @@ describe('ClassesController', () => {
 
   describe('createClass', () => {
     describe('when createClass is called', () => {
-      let aClass: String;
+      let aClass: string;
 
       beforeEach(() => {
         aClass = controller.create();

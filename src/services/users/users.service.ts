@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 
-import { User } from '@prisma/client';
+import { Prisma, User } from '@prisma/client';
 
 import { PrismaService } from '@services/prisma/prisma.service';
 
@@ -29,19 +29,23 @@ export class UsersService {
         },
       });
     } catch (error) {
-      throw new HttpException(
-        {
-          status:
-            error.code == 'P2023'
-              ? HttpStatus.BAD_REQUEST
-              : HttpStatus.INTERNAL_SERVER_ERROR,
-          error:
-            error.code == 'P2023'
-              ? error.meta.message
-              : 'Internal server error',
-        },
-        HttpStatus.NOT_FOUND,
-      );
+      if (error instanceof Prisma.PrismaClientKnownRequestError) {
+        throw new HttpException(
+          {
+            status:
+              error.code == 'P2023'
+                ? HttpStatus.BAD_REQUEST
+                : HttpStatus.INTERNAL_SERVER_ERROR,
+            error:
+              error.code == 'P2023'
+                ? error.meta?.message
+                : 'Internal server error',
+          },
+          HttpStatus.NOT_FOUND,
+        );
+      }
+
+      throw error;
     }
   }
 

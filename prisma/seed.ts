@@ -15,16 +15,26 @@ async function main() {
   });
   console.log('Users created');
 
-  const students: CreateUserDto[] = usersToCreate.filter((user) => user.permission === 'student').map((user) => { const { permission, ...rest } = user; return rest as CreateUserDto });
+  const students: CreateUserDto[] = usersToCreate
+    .filter((user) => user.permission === 'student')
+    .map((user) => {
+      const { permission, ...rest } = user;
+      return rest as CreateUserDto;
+    });
   await prisma.student.createMany({
-    data: students
-  })
+    data: students,
+  });
   console.log('Students created');
 
-  const teachers: CreateUserDto[] = usersToCreate.filter((user) => user.permission === 'teacher').map((user) => { const { permission, ...rest } = user; return rest as CreateUserDto });
+  const teachers: CreateUserDto[] = usersToCreate
+    .filter((user) => user.permission === 'teacher')
+    .map((user) => {
+      const { permission, ...rest } = user;
+      return rest as CreateUserDto;
+    });
   await prisma.teacher.createMany({
-    data: teachers
-  })
+    data: teachers,
+  });
   console.log('Teachers created');
 }
 

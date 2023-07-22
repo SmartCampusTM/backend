@@ -1,10 +1,4 @@
-import {
-  Controller,
-  Delete,
-  Get,
-  Patch,
-  Post
-} from '@nestjs/common';
+import { Controller, Delete, Get, Patch, Post } from '@nestjs/common';
 
 import { ClassesService } from '@services/classes/classes.service';
 
