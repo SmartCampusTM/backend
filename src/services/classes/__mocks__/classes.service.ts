@@ -1,8 +1,9 @@
+import { classStub } from '../../../../test/stubs/class.stub';
+
 export const ClassesService = jest.fn().mockReturnValue({
-    createClass: jest.fn().mockReturnValue('OK'),
-    classes: jest.fn().mockReturnValue('OK'),
-    findClass: jest.fn().mockReturnValue('OK'),
-    updateClass: jest.fn().mockReturnValue('OK'),
-    deleteClass: jest.fn().mockReturnValue('OK'),
-  });
-  
+  createClass: jest.fn().mockResolvedValue(classStub()),
+  classes: jest.fn().mockResolvedValue([classStub()]),
+  findClass: jest.fn().mockResolvedValue(classStub()),
+  updateClass: jest.fn().mockResolvedValue(classStub()),
+  deleteClass: jest.fn().mockResolvedValue('Class deleted'),
+});

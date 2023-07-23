@@ -1,25 +1,72 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+
+import { Class, Prisma } from '@prisma/client';
+
+import { PrismaService } from '../prisma/prisma.service';
+import { CreateClassDto } from '@/modules/classes/dtos/create-class.dto';
+import { UpdateClassDto } from '@/modules/classes/dtos/update-class.dto';
 
 @Injectable()
 export class ClassesService {
-  
-  createClass(): string {
-    return 'OK';
+  constructor(private readonly prisma: PrismaService) {}
+
+  async createClass(createClassDto: CreateClassDto): Promise<Class | null> {
+    return await this.prisma.class.create({
+      data: createClassDto,
+    });
   }
 
-  classes(): string {
-    return 'OK';
+  async classes(): Promise<Class[] | null> {
+    return await this.prisma.class.findMany();
   }
 
-  findClass(): string {
-    return 'OK';
+  async findClass(id: string): Promise<Class | null> {
+    try {
+      return await this.prisma.class.findUnique({
+        where: {
+          id: id,
+        },
+      });
+    } catch (error) {
+      if (error instanceof Prisma.PrismaClientKnownRequestError) {
+        throw new HttpException(
+          {
+            status:
+              error.code == 'P2023'
+                ? HttpStatus.BAD_REQUEST
+                : HttpStatus.INTERNAL_SERVER_ERROR,
+            error:
+              error.code == 'P2023'
+                ? error.meta?.message
+                : 'Internal server error',
+          },
+          HttpStatus.NOT_FOUND,
+        );
+      }
+
+      throw error;
+    }
   }
 
-  updateClass(): string {
-    return 'OK';
+  async updateClass(
+    id: string,
+    updateClassDto: UpdateClassDto,
+  ): Promise<Class | null> {
+    return await this.prisma.class.update({
+      where: {
+        id: id,
+      },
+      data: updateClassDto,
+    });
   }
 
-  deleteClass(): string {
-    return 'OK';
+  async deleteClass(id: string): Promise<string> {
+    await this.prisma.class.delete({
+      where: {
+        id: id,
+      },
+    });
+
+    return 'Class deleted';
   }
 }

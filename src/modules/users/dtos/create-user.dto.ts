@@ -2,22 +2,22 @@ import { MinLength, IsEnum, IsEmail, IsUrl } from 'class-validator';
 
 export class CreateUserDto {
   @IsEmail()
-  email: string;
+  email!: string;
 
   @MinLength(2)
-  name: string;
+  name!: string;
 
   @MinLength(2)
-  lastName: string;
+  lastName!: string;
 
   @MinLength(8)
-  password: string;
+  password!: string;
 
   @IsUrl()
-  profilePicture: string;
+  profilePicture!: string;
 
   @IsEnum(['admin', 'teacher', 'student'], {
     message: 'Not a valid permission group',
   })
-  permission: string;
+  permission!: string;
 }
