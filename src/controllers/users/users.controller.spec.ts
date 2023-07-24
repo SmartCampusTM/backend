@@ -35,7 +35,7 @@ describe('UsersController', () => {
         user = await controller.create(userStub());
       });
 
-      test('then it should call UsersService', () => {
+      test('then it should call usersService', () => {
         expect(service.createUser).toBeCalledWith(userStub());
       });
 
@@ -116,7 +116,7 @@ describe('UsersController', () => {
         expect(service.deleteUser).toBeCalledWith(userStub().id);
       });
 
-      test('then it should return a user', () => {
+      test('then it should return a string', () => {
         expect(message).toEqual('User deleted');
       });
     });

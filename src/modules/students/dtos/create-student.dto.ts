@@ -1,5 +1,3 @@
-import { MinLength } from 'class-validator';
-
 export class CreateStudentDto {
   email!: string;
 
