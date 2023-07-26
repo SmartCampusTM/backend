@@ -7,8 +7,10 @@ import { UsersModule } from '@modules/users/users.module';
 
 import { AppService } from '@services/app/app.service';
 
+import { ClassroomsModule } from './../classrooms/classrooms.module';
+
 @Module({
-  imports: [UsersModule, ClassesModule],
+  imports: [UsersModule, ClassesModule, ClassroomsModule],
   controllers: [AppController],
   providers: [AppService],
 })
