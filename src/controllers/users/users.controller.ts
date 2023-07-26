@@ -4,7 +4,6 @@ import {
   Patch,
   Param,
   Post,
-  HttpCode,
   Delete,
   ValidationPipe,
   Body,
@@ -39,7 +38,6 @@ export class UsersController {
   }
 
   @Patch(':id')
-  @HttpCode(200)
   async update(
     @Param('id') id: string,
     @Body() updateUserDto: UpdateUserDto,
