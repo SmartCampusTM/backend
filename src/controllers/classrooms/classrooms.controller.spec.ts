@@ -9,7 +9,7 @@ import { ClassroomsService } from '@services/classrooms/classrooms.service';
 import { classroomStub } from '../../../test/stubs/classroom.stub';
 import { UpdateClassroomDto } from '@/modules/classrooms/dtos/update-classroom.dto';
 
-jest.mock('@services/classrooms/Classrooms.service');
+jest.mock('@services/classrooms/classrooms.service');
 
 describe('ClassroomsController', () => {
   let controller: ClassroomsController;
