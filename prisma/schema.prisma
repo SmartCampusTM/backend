@@ -41,3 +41,9 @@ model Class {
   name        String
   description String
 }
+
+model Classroom {
+  id     String @id @default(auto()) @map("_id") @db.ObjectId
+  name   String
+  number Int
+}

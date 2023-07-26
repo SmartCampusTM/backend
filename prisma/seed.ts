@@ -1,6 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 import { users } from './data/users';
 import { classes } from './data/classes';
+import { classrooms } from './data/classroom';
 import { CreateUserDto } from '@/modules/users/dtos/create-user.dto';
 const prisma = new PrismaClient();
 
@@ -9,6 +10,7 @@ async function main() {
   await prisma.student.deleteMany();
   await prisma.teacher.deleteMany();
   await prisma.class.deleteMany();
+  await prisma.classroom.deleteMany();
 
   const usersToCreate: CreateUserDto[] = users();
 
@@ -43,6 +45,11 @@ async function main() {
     data: classes(),
   })
   console.log('Classes created');
+
+  await prisma.classroom.createMany({
+    data: classrooms(),
+  })
+  console.log('Classrooms created');
 }
 
 main()
