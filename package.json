@@ -15,7 +15,7 @@
     "prep": "npm ci && echo Run 'npm run prisma:all' after the container has started! && npm run db:up",
     
     "//": "-- DATABASE",
-    "prisma:all": "npx prisma generate && npx prisma db push && npx prisma db seed",
+    "prisma:all": "npx prisma format && npx prisma generate && npx prisma db push && npx prisma db seed",
     "prisma:schema": "npx prisma generate && npx prisma db push",
     "db:up": "docker-compose up -d",
     "db:down": "docker stop mongo-dev",
