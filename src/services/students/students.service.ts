@@ -6,16 +6,18 @@ import {
   Delete,
   Get,
   HttpCode,
+  HttpException,
   HttpStatus,
   Injectable,
   Patch,
   Post,
 } from '@nestjs/common';
 
-import { Student } from '@prisma/client';
+import { Prisma, Student } from '@prisma/client';
 
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateStudentDto } from '@/modules/students/dtos/create-student.dto';
+import { UpdateStudentDto } from '@/modules/students/dtos/update-student.dto';
 
 @Injectable()
 export class StudentsService {
@@ -31,25 +33,62 @@ export class StudentsService {
   }
 
   //read
-  @HttpCode(200)
-  @Get()
-  students(): string {
-    return 'OK';
+  
+  async students(): Promise<Student[] | null>{
+    return await this.prisma.student.findMany();
   }
+
+
   // return one student
-  @HttpCode(200)
-  @Get()
-  findStudent(): string {
-    return 'OK';
+  async findStudent(id :string): Promise<Student | null>{
+   try {
+     return this.prisma.student.findUnique({
+       where: {
+         id: id,
+       },
+     });
+   } catch (error) {
+     if (error instanceof Prisma.PrismaClientKnownRequestError) {
+       throw new HttpException(
+         {
+           status:
+             error.code == 'P2023'
+               ? HttpStatus.BAD_REQUEST
+               : HttpStatus.INTERNAL_SERVER_ERROR,
+           error:
+             error.code == 'P2023'
+               ? error.meta?.message
+               : 'Internal server error',
+         },
+         HttpStatus.NOT_FOUND,
+       );
+     }
+
+     throw error;
+   }
   }
   //update
-  @Patch()
-  updateStudent(): string {
-    return 'OK';
+
+  async updateStudent(id: string,
+    updateStudentDto: UpdateStudentDto): Promise<Student | null>{
+   const newStudent = { ...updateStudentDto };
+   console.log(newStudent);
+   return await this.prisma.student.update({
+     where: {
+       id: id,
+     },
+     data: newStudent,
+   });
   }
   //delete
-  @Delete()
-  deleteStudent(): string {
-    return 'OK';
+
+  async deleteStudent(id: string): Promise<string>{
+    await this.prisma.student.delete({
+      where: {
+        id: id,
+      },
+  });
+
+  return 'Student deleted';
   }
 }

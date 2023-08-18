@@ -4,7 +4,7 @@ import { Student } from '@prisma/client';
 
 import { StudentsController } from '';
 
-import { StudentsService } from '@servic:es/students/students.service';
+import { StudentsService } from '@services/students/students.service';
 
 import { studentStub } from '../../../test/stubs/student.stub';
 import { UpdateStudentDto } from '@modules/students/dtos/update-student.dto';

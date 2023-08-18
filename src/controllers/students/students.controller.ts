@@ -7,6 +7,8 @@ import {
   Controller,
   Delete,
   Get,
+  HttpCode,
+  Param,
   Patch,
   Post,
   ValidationPipe,
@@ -23,33 +25,33 @@ export class StudentsController {
   constructor(private readonly studentsService: StudentsService) {}
 
   @Post()
-  create(
-    @Body(new ValidationPipe()) createStudentDto: CreateStudentDto,
+  async create(
+    @Body(new ValidationPipe()) createStudentsDto: CreateStudentDto,
   ): Promise<Student | null> {
-    return this.studentsService.createStudent(createStudentDto);
-  }
-  @Get()
-  findAll(): string {
-    return this.studentsService.students();
+    return await this.studentsService.createStudent(createStudentsDto);
   }
 
   @Get()
-  findOne(): string {
-    return this.studentsService.findStudent();
+  async findAll(): Promise<Student[] | null> {
+    return await this.studentsService.students();
   }
 
-  @Patch()
-  update(): string {
-    return this.studentsService.updateStudent();
+  @Get(':id')
+  async findOne(@Param('id') id: string): Promise<Student | null> {
+    return this.studentsService.findStudent(id);
   }
 
-  @Delete()
-  deleteStudent(): string {
-    return this.studentsService.deleteStudent();
+  @Patch(':id')
+  @HttpCode(200)
+  async update(
+    @Param('id') id: string,
+    @Body() updateStudentsDto: UpdateStudentDto,
+  ): Promise<Student | null> {
+    return this.studentsService.updateStudent(id, updateStudentsDto);
   }
 
-  @Delete()
-  delete(id: string): string {
-    return this.studentsService.deleteStudent();
+  @Delete(':id')
+  async delete(@Param('id') id: string): Promise<string> {
+    return this.studentsService.deleteStudent(id);
   }
 }
