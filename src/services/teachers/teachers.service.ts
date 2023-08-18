@@ -13,19 +13,19 @@ export class TeachersService {
   async createTeacher(
     createTeacherDto: CreateTeacherDto,
   ): Promise<Teacher | null> {
-    return await this.prismaService.teacher.create({
+    return this.prismaService.teacher.create({
       data: createTeacherDto,
     });
   }
 
   async teachers(): Promise<Teacher[] | null> {
-    return await this.prismaService.teacher.findMany();
+    return this.prismaService.teacher.findMany();
   }
 
   async findTeacher(id: string): Promise<Teacher | null> {
-    return await this.prismaService.teacher.findUnique({
+    return this.prismaService.teacher.findUnique({
       where: {
-        id: id,
+        id,
       },
     });
   }
@@ -34,9 +34,9 @@ export class TeachersService {
     id: string,
     updateTeacherDto: UpdateTeacherDto,
   ): Promise<Teacher | null> {
-    return await this.prismaService.teacher.update({
+    return this.prismaService.teacher.update({
       where: {
-        id: id,
+        id,
       },
       data: updateTeacherDto,
     });
@@ -45,10 +45,12 @@ export class TeachersService {
   async deleteTeacher(id: string): Promise<string> {
     await this.prismaService.teacher.delete({
       where: {
-        id: id,
+        id,
       },
     });
 
     return 'Teacher deleted';
   }
 }
+
+export default TeachersService;

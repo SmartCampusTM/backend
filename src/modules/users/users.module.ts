@@ -11,3 +11,5 @@ import { UsersService } from '@services/users/users.service';
   providers: [UsersService, PrismaService],
 })
 export class UsersModule {}
+
+export default UsersModule;

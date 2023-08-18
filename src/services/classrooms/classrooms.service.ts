@@ -13,20 +13,20 @@ export class ClassroomsService {
   async createClassroom(
     createClassroomDto: CreateClassroomDto,
   ): Promise<Classroom | null> {
-    return await this.prisma.classroom.create({
+    return this.prisma.classroom.create({
       data: createClassroomDto,
     });
   }
 
   async classrooms(): Promise<Classroom[] | null> {
-    return await this.prisma.classroom.findMany();
+    return this.prisma.classroom.findMany();
   }
 
   async findClassroom(id: string): Promise<Classroom | null> {
     try {
       return await this.prisma.classroom.findUnique({
         where: {
-          id: id,
+          id,
         },
       });
     } catch (error) {
@@ -34,11 +34,11 @@ export class ClassroomsService {
         throw new HttpException(
           {
             status:
-              error.code == 'P2023'
+              error.code === 'P2023'
                 ? HttpStatus.BAD_REQUEST
                 : HttpStatus.INTERNAL_SERVER_ERROR,
             error:
-              error.code == 'P2023'
+              error.code === 'P2023'
                 ? error.meta?.message
                 : 'Internal server error',
           },
@@ -54,9 +54,9 @@ export class ClassroomsService {
     id: string,
     updateClassroomDto: UpdateClassroomDto,
   ): Promise<Classroom | null> {
-    return await this.prisma.classroom.update({
+    return this.prisma.classroom.update({
       where: {
-        id: id,
+        id,
       },
       data: updateClassroomDto,
     });
@@ -65,10 +65,12 @@ export class ClassroomsService {
   async deleteClassroom(id: string): Promise<string> {
     await this.prisma.classroom.delete({
       where: {
-        id: id,
+        id,
       },
     });
 
     return 'Classroom deleted';
   }
 }
+
+export default ClassroomsService;

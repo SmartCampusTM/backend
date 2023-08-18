@@ -1,28 +1,28 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 
-import { Class, Prisma } from '@prisma/client';
+import { Prisma, Grade } from '@prisma/client';
 
 import { PrismaService } from '../prisma/prisma.service';
-import { CreateClassDto } from '@/modules/classes/dtos/create-class.dto';
-import { UpdateClassDto } from '@/modules/classes/dtos/update-class.dto';
+import { CreateGradeDto } from '@/modules/grades/dtos/create-grade.dto';
+import { UpdateGradeDto } from '@/modules/grades/dtos/update-grade.dto';
 
 @Injectable()
-export class ClassesService {
+export class GradesService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async createClass(createClassDto: CreateClassDto): Promise<Class | null> {
-    return this.prisma.class.create({
-      data: createClassDto,
+  async createGrade(createGradeDto: CreateGradeDto): Promise<Grade | null> {
+    return this.prisma.grade.create({
+      data: createGradeDto,
     });
   }
 
-  async classes(): Promise<Class[] | null> {
-    return this.prisma.class.findMany();
+  async grades(): Promise<Grade[] | null> {
+    return this.prisma.grade.findMany();
   }
 
-  async findClass(id: string): Promise<Class | null> {
+  async findGrade(id: string): Promise<Grade | null> {
     try {
-      return await this.prisma.class.findUnique({
+      return await this.prisma.grade.findUnique({
         where: {
           id,
         },
@@ -48,27 +48,27 @@ export class ClassesService {
     }
   }
 
-  async updateClass(
+  async updateGrade(
     id: string,
-    updateClassDto: UpdateClassDto,
-  ): Promise<Class | null> {
-    return this.prisma.class.update({
+    updateGradeDto: UpdateGradeDto,
+  ): Promise<Grade | null> {
+    return this.prisma.grade.update({
       where: {
         id,
       },
-      data: updateClassDto,
+      data: { ...updateGradeDto },
     });
   }
 
-  async deleteClass(id: string): Promise<string> {
-    await this.prisma.class.delete({
+  async deleteGrade(id: string): Promise<string> {
+    await this.prisma.grade.delete({
       where: {
         id,
       },
     });
 
-    return 'Class deleted';
+    return 'Grade deleted';
   }
 }
 
-export default ClassesService;
+export default GradesService;

@@ -6,3 +6,5 @@ export class CreateClassroomDto {
 
   number!: number;
 }
+
+export default CreateClassroomDto;

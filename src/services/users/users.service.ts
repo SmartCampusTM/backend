@@ -12,20 +12,20 @@ export class UsersService {
   constructor(private readonly prisma: PrismaService) {}
 
   async createUser(createUserDto: CreateUserDto): Promise<User | null> {
-    return await this.prisma.user.create({
+    return this.prisma.user.create({
       data: createUserDto,
     });
   }
 
   async users(): Promise<User[] | null> {
-    return await this.prisma.user.findMany();
+    return this.prisma.user.findMany();
   }
 
   async findUser(id: string): Promise<User | null> {
     try {
       return await this.prisma.user.findUnique({
         where: {
-          id: id,
+          id,
         },
       });
     } catch (error) {
@@ -33,11 +33,11 @@ export class UsersService {
         throw new HttpException(
           {
             status:
-              error.code == 'P2023'
+              error.code === 'P2023'
                 ? HttpStatus.BAD_REQUEST
                 : HttpStatus.INTERNAL_SERVER_ERROR,
             error:
-              error.code == 'P2023'
+              error.code === 'P2023'
                 ? error.meta?.message
                 : 'Internal server error',
           },
@@ -54,10 +54,9 @@ export class UsersService {
     updateUserDto: UpdateUserDto,
   ): Promise<User | null> {
     const newUser = { ...updateUserDto };
-    console.log(newUser);
-    return await this.prisma.user.update({
+    return this.prisma.user.update({
       where: {
-        id: id,
+        id,
       },
       data: newUser,
     });
@@ -66,10 +65,12 @@ export class UsersService {
   async deleteUser(id: string): Promise<string> {
     await this.prisma.user.delete({
       where: {
-        id: id,
+        id,
       },
     });
 
     return 'User deleted';
   }
 }
+
+export default UsersService;

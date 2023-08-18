@@ -11,3 +11,5 @@ export const userStub = (): User => {
     permission: 'student',
   };
 };
+
+export default userStub;

@@ -9,3 +9,5 @@ export class CreateClassDto {
   @MinLength(2)
   description!: string;
 }
+
+export default CreateClassDto;

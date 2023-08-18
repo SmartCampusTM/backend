@@ -10,3 +10,5 @@ export const teacherStub = (): Teacher => {
     profilePicture: 'https://assets.smartcampus/com/users/john-doe.jpg',
   };
 };
+
+export default teacherStub;
