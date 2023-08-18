@@ -17,7 +17,7 @@ $ npm run start:dev
 
 ##
 
-## Prepararation for Contributing
+## Preparation for Contributing
 First we need to lint, format, and test the code
 ```bash
 $ npm run git:prepare
