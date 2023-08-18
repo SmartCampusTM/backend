@@ -2,7 +2,7 @@ import { Test } from '@nestjs/testing';
 
 import { Student } from '@prisma/client';
 
-import { StudentsController } from '';
+import { StudentsController } from '@controllers/students/students.controller';
 
 import { StudentsService } from '@services/students/students.service';
 
