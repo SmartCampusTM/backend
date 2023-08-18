@@ -10,3 +10,5 @@ export const studentStub = (): Student => {
     profilePicture: 'https://assets.smartcampus/com/users/john-doe.jpg',
   };
 };
+
+export default studentStub;

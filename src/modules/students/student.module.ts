@@ -14,3 +14,5 @@ import { StudentsService } from '@/services/students/students.service';
   providers: [StudentsService, PrismaService],
 })
 export class StudentModule {}
+
+export default StudentModule;

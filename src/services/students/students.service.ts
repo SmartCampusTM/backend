@@ -1,17 +1,4 @@
-/*
-https://docs.nestjs.com/providers#services
-*/
-
-import {
-  Delete,
-  Get,
-  HttpCode,
-  HttpException,
-  HttpStatus,
-  Injectable,
-  Patch,
-  Post,
-} from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable, Post } from '@nestjs/common';
 
 import { Prisma, Student } from '@prisma/client';
 
@@ -27,68 +14,65 @@ export class StudentsService {
   async createStudent(
     createStudentDto: CreateStudentDto,
   ): Promise<Student | null> {
-    return await this.prisma.student.create({
+    return this.prisma.student.create({
       data: createStudentDto,
     });
   }
 
-  //read
-  
-  async students(): Promise<Student[] | null>{
-    return await this.prisma.student.findMany();
+  async students(): Promise<Student[] | null> {
+    return this.prisma.student.findMany();
   }
 
+  async findStudent(id: string): Promise<Student | null> {
+    try {
+      return await this.prisma.student.findUnique({
+        where: {
+          id,
+        },
+      });
+    } catch (error) {
+      if (error instanceof Prisma.PrismaClientKnownRequestError) {
+        throw new HttpException(
+          {
+            status:
+              error.code === 'P2023'
+                ? HttpStatus.BAD_REQUEST
+                : HttpStatus.INTERNAL_SERVER_ERROR,
+            error:
+              error.code === 'P2023'
+                ? error.meta?.message
+                : 'Internal server error',
+          },
+          HttpStatus.NOT_FOUND,
+        );
+      }
 
-  // return one student
-  async findStudent(id :string): Promise<Student | null>{
-   try {
-     return this.prisma.student.findUnique({
-       where: {
-         id: id,
-       },
-     });
-   } catch (error) {
-     if (error instanceof Prisma.PrismaClientKnownRequestError) {
-       throw new HttpException(
-         {
-           status:
-             error.code == 'P2023'
-               ? HttpStatus.BAD_REQUEST
-               : HttpStatus.INTERNAL_SERVER_ERROR,
-           error:
-             error.code == 'P2023'
-               ? error.meta?.message
-               : 'Internal server error',
-         },
-         HttpStatus.NOT_FOUND,
-       );
-     }
-
-     throw error;
-   }
+      throw error;
+    }
   }
-  //update
 
-  async updateStudent(id: string,
-    updateStudentDto: UpdateStudentDto): Promise<Student | null>{
-   const newStudent = { ...updateStudentDto };
-   console.log(newStudent);
-   return await this.prisma.student.update({
-     where: {
-       id: id,
-     },
-     data: newStudent,
-   });
+  async updateStudent(
+    id: string,
+    updateStudentDto: UpdateStudentDto,
+  ): Promise<Student | null> {
+    const newStudent = { ...updateStudentDto };
+    return this.prisma.student.update({
+      where: {
+        id,
+      },
+      data: newStudent,
+    });
   }
-  //delete
 
-  async deleteStudent(id: string): Promise<string>{
+  async deleteStudent(id: string): Promise<string> {
     await this.prisma.student.delete({
       where: {
-        id: id,
+        id,
       },
-  });
+    });
 
-  return 'Student deleted';
+    return 'Student deleted';
   }
 }
+
+export default StudentsService;

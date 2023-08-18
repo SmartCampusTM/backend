@@ -4,10 +4,11 @@ import { Student } from '@prisma/client';
 
 import { StudentsController } from '@controllers/students/students.controller';
 
+import { UpdateStudentDto } from '@modules/students/dtos/update-student.dto';
+
 import { StudentsService } from '@services/students/students.service';
 
 import { studentStub } from '../../../test/stubs/student.stub';
-import { UpdateStudentDto } from '@modules/students/dtos/update-student.dto';
 
 jest.mock('@services/students/students.service');
 

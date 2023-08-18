@@ -9,3 +9,5 @@ export class CreateStudentDto {
 
   profilePicture!: string;
 }
+
+export default CreateStudentDto;

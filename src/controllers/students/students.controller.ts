@@ -28,12 +28,12 @@ export class StudentsController {
   async create(
     @Body(new ValidationPipe()) createStudentsDto: CreateStudentDto,
   ): Promise<Student | null> {
-    return await this.studentsService.createStudent(createStudentsDto);
+    return this.studentsService.createStudent(createStudentsDto);
   }
 
   @Get()
   async findAll(): Promise<Student[] | null> {
-    return await this.studentsService.students();
+    return this.studentsService.students();
   }
 
   @Get(':id')
@@ -55,3 +55,5 @@ export class StudentsController {
     return this.studentsService.deleteStudent(id);
   }
 }
+
+export default StudentsController;
