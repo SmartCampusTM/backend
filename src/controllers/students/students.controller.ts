@@ -29,36 +29,24 @@ export class StudentsController {
     return this.studentsService.createStudent(createStudentDto);
   }
   @Get()
-  findAllStudents(): string {
+  findAll(): string {
     return this.studentsService.students();
   }
 
   @Get()
-<<<<<<< HEAD
-  findStudent(): string {
-    return this.studentsService.findStudent();
-  }
-
-   @Patch()
-   updateStudent(): string {
-        return this.studentsService.updateStudent();
-    }
-
-    @Delete()
-    deleteStudent(): string {
-        return this.studentsService.deleteStudent();
-    }
-
-=======
-  findOne(id: string): string {
+  findOne(): string {
     return this.studentsService.findStudent();
   }
 
   @Patch()
-  update(id: string, updateStudentDto: UpdateStudentDto): string {
+  update(): string {
     return this.studentsService.updateStudent();
   }
->>>>>>> c2ce9c562a4629974c352fb3a72b0297f9028a88
+
+  @Delete()
+  deleteStudent(): string {
+    return this.studentsService.deleteStudent();
+  }
 
   @Delete()
   delete(id: string): string {
