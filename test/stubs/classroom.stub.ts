@@ -7,3 +7,5 @@ export const classroomStub = (): Classroom => {
     number: 214,
   };
 };
+
+export default classroomStub;

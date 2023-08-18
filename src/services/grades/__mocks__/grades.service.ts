@@ -7,3 +7,5 @@ export const GradesService = jest.fn().mockReturnValue({
   updateGrade: jest.fn().mockResolvedValue(gradeStub()),
   deleteGrade: jest.fn().mockResolvedValue('Grade deleted'),
 });
+
+export default GradesService;

@@ -88,7 +88,7 @@ describe('GradesController', () => {
 
       beforeEach(async () => {
         updateGradeDto = {
-          percentage: 2.90,
+          percentage: 2.9,
         };
         grade = await controller.update(gradeStub().id, updateGradeDto);
       });

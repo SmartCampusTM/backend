@@ -8,3 +8,5 @@ export const classStub = (): Class => {
     description: 'Math is a very important subject',
   };
 };
+
+export default classStub;

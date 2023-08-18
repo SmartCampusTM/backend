@@ -23,17 +23,17 @@ export class TeachersController {
   async create(
     @Body(new ValidationPipe()) createTeacherDto: CreateTeacherDto,
   ): Promise<Teacher | null> {
-    return await this.teachersService.createTeacher(createTeacherDto);
+    return this.teachersService.createTeacher(createTeacherDto);
   }
 
   @Get()
   async findAll(): Promise<Teacher[] | null> {
-    return await this.teachersService.teachers();
+    return this.teachersService.teachers();
   }
 
   @Get(':id')
   async findOne(@Param('id') id: string): Promise<Teacher | null> {
-    return await this.teachersService.findTeacher(id);
+    return this.teachersService.findTeacher(id);
   }
 
   @Patch(':id')
@@ -41,11 +41,13 @@ export class TeachersController {
     @Param('id') id: string,
     @Body(new ValidationPipe()) updateTeacherDto: UpdateTeacherDto,
   ): Promise<Teacher | null> {
-    return await this.teachersService.updateTeacher(id, updateTeacherDto);
+    return this.teachersService.updateTeacher(id, updateTeacherDto);
   }
 
   @Delete(':id')
   async delete(@Param('id') id: string): Promise<string> {
-    return await this.teachersService.deleteTeacher(id);
+    return this.teachersService.deleteTeacher(id);
   }
 }
+
+export default TeachersController;

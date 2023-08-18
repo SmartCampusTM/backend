@@ -21,3 +21,5 @@ export class CreateUserDto {
   })
   permission!: string;
 }
+
+export default CreateUserDto;

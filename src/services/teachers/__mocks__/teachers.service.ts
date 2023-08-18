@@ -7,3 +7,5 @@ export const TeachersService = jest.fn().mockReturnValue({
   updateTeacher: jest.fn().mockResolvedValue(teacherStub()),
   deleteTeacher: jest.fn().mockResolvedValue('Teacher deleted'),
 });
+
+export default TeachersService;

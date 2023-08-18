@@ -24,17 +24,17 @@ export class ClassesController {
   async create(
     @Body(new ValidationPipe()) createClassDto: CreateClassDto,
   ): Promise<Class | null> {
-    return await this.classesService.createClass(createClassDto);
+    return this.classesService.createClass(createClassDto);
   }
 
   @Get()
   async findAll(): Promise<Class[] | null> {
-    return await this.classesService.classes();
+    return this.classesService.classes();
   }
 
   @Get(':id')
   async findOne(@Param('id') id: string): Promise<Class | null> {
-    return await this.classesService.findClass(id);
+    return this.classesService.findClass(id);
   }
 
   @Patch(':id')
@@ -42,11 +42,13 @@ export class ClassesController {
     @Param('id') id: string,
     @Body(new ValidationPipe()) updateClassDto: UpdateClassDto,
   ): Promise<Class | null> {
-    return await this.classesService.updateClass(id, updateClassDto);
+    return this.classesService.updateClass(id, updateClassDto);
   }
 
   @Delete(':id')
   async delete(@Param('id') id: string): Promise<string> {
-    return await this.classesService.deleteClass(id);
+    return this.classesService.deleteClass(id);
   }
 }
+
+export default ClassesController;
