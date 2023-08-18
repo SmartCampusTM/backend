@@ -30,6 +30,7 @@
   "include": [
     ".eslintrc.js",
     "src",
-    "test"
+    "test",
+    "prisma"
   ]
 }

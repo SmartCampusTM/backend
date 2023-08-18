@@ -1,9 +1,13 @@
+/* eslint-disable no-console */
 import { PrismaClient } from '@prisma/client';
-import { users } from './data/users';
+
+import { CreateUserDto } from '@modules/users/dtos/create-user.dto';
+
 import { classes } from './data/classes';
 import { classrooms } from './data/classroom';
-import { CreateUserDto } from '@/modules/users/dtos/create-user.dto';
 import { grades } from './data/grades';
+import { users } from './data/users';
+
 const prisma = new PrismaClient();
 
 async function main() {
@@ -45,17 +49,17 @@ async function main() {
 
   await prisma.class.createMany({
     data: classes(),
-  })
+  });
   console.log('Classes created');
 
   await prisma.classroom.createMany({
     data: classrooms(),
-  })
+  });
   console.log('Classrooms created');
 
   await prisma.grade.createMany({
     data: grades(),
-  })
+  });
   console.log('Grades created');
 }
 
