@@ -16,22 +16,22 @@ export class StudentsController {
     return this.studentsService.createStudent(createStudentDto);
   }
   @Get()
-  findAll(): string {
+  findAllStudents(): string {
     return this.studentsService.students();
   }
 
   @Get()
-  findOne(): string {
+  findStudent(): string {
     return this.studentsService.findStudent();
   }
 
    @Patch()
-   patch(): string {
+   updateStudent(): string {
         return this.studentsService.updateStudent();
     }
 
     @Delete()
-    delete(): string {
+    deleteStudent(): string {
         return this.studentsService.deleteStudent();
     }
 
