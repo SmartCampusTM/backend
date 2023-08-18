@@ -4,7 +4,6 @@ import {
   Patch,
   Param,
   Post,
-  HttpCode,
   Delete,
   ValidationPipe,
   Body,
@@ -25,12 +24,12 @@ export class UsersController {
   async create(
     @Body(new ValidationPipe()) createUserDto: CreateUserDto,
   ): Promise<User | null> {
-    return await this.usersService.createUser(createUserDto);
+    return this.usersService.createUser(createUserDto);
   }
 
   @Get()
   async findAll(): Promise<User[] | null> {
-    return await this.usersService.users();
+    return this.usersService.users();
   }
 
   @Get(':id')
@@ -39,7 +38,6 @@ export class UsersController {
   }
 
   @Patch(':id')
-  @HttpCode(200)
   async update(
     @Param('id') id: string,
     @Body() updateUserDto: UpdateUserDto,
@@ -52,3 +50,5 @@ export class UsersController {
     return this.usersService.deleteUser(id);
   }
 }
+
+export default UsersController;

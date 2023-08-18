@@ -7,3 +7,5 @@ export const UsersService = jest.fn().mockReturnValue({
   updateUser: jest.fn().mockResolvedValue(userStub()),
   deleteUser: jest.fn().mockResolvedValue('User deleted'),
 });
+
+export default UsersService;

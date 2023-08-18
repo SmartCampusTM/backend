@@ -26,5 +26,11 @@
       "@modules/*": ["src/modules/*"],
       "@services/*": ["src/services/*"],
     }
-  }
+  },
+  "include": [
+    ".eslintrc.js",
+    "src",
+    "test",
+    "prisma"
+  ]
 }

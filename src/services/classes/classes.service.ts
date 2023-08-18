@@ -11,20 +11,20 @@ export class ClassesService {
   constructor(private readonly prisma: PrismaService) {}
 
   async createClass(createClassDto: CreateClassDto): Promise<Class | null> {
-    return await this.prisma.class.create({
+    return this.prisma.class.create({
       data: createClassDto,
     });
   }
 
   async classes(): Promise<Class[] | null> {
-    return await this.prisma.class.findMany();
+    return this.prisma.class.findMany();
   }
 
   async findClass(id: string): Promise<Class | null> {
     try {
       return await this.prisma.class.findUnique({
         where: {
-          id: id,
+          id,
         },
       });
     } catch (error) {
@@ -32,11 +32,11 @@ export class ClassesService {
         throw new HttpException(
           {
             status:
-              error.code == 'P2023'
+              error.code === 'P2023'
                 ? HttpStatus.BAD_REQUEST
                 : HttpStatus.INTERNAL_SERVER_ERROR,
             error:
-              error.code == 'P2023'
+              error.code === 'P2023'
                 ? error.meta?.message
                 : 'Internal server error',
           },
@@ -52,9 +52,9 @@ export class ClassesService {
     id: string,
     updateClassDto: UpdateClassDto,
   ): Promise<Class | null> {
-    return await this.prisma.class.update({
+    return this.prisma.class.update({
       where: {
-        id: id,
+        id,
       },
       data: updateClassDto,
     });
@@ -63,10 +63,12 @@ export class ClassesService {
   async deleteClass(id: string): Promise<string> {
     await this.prisma.class.delete({
       where: {
-        id: id,
+        id,
       },
     });
 
     return 'Class deleted';
   }
 }
+
+export default ClassesService;

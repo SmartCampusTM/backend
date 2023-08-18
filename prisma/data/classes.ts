@@ -1,9 +1,10 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { faker } from '@faker-js/faker';
-import { CreateClassDto } from '@/modules/classes/dtos/create-class.dto';
 import { schoolClasses } from './schoolClasses';
+import { CreateClassDto } from '@/modules/classes/dtos/create-class.dto';
 
 export const classes = (): CreateClassDto[] => {
-  let users: CreateClassDto[] = [];
+  const users: CreateClassDto[] = [];
   schoolClasses.forEach((aClass) => {
     users.push({
       name: aClass.name,
@@ -14,3 +15,5 @@ export const classes = (): CreateClassDto[] => {
 
   return users;
 };
+
+export default classes;
