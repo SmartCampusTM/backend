@@ -20,7 +20,7 @@
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
-    "git:prepare": "npm run git:lint && npm run git:format && npm run test",
+    "git:prepare": "npx prisma format && npm run git:lint && npm run git:format && npm run test",
     "git:lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "git:format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\" && npx prisma format",
     "git:build": "nest build",
