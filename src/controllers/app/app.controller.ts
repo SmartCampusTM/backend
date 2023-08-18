@@ -11,3 +11,5 @@ export class AppController {
     return this.appService.getHello();
   }
 }
+
+export default AppController;

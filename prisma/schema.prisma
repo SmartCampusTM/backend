@@ -47,3 +47,8 @@ model Classroom {
   name   String
   number Int
 }
+
+model Grade {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  percentage Float
+}
