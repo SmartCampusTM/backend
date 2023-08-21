@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import { faker } from '@faker-js/faker';
 import { schoolClasses } from './schoolClasses';
 import { CreateClassDto } from '@/modules/classes/dtos/create-class.dto';

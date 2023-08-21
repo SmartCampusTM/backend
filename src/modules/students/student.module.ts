@@ -13,6 +13,6 @@ import { StudentsService } from '@/services/students/students.service';
   controllers: [StudentsController],
   providers: [StudentsService, PrismaService],
 })
-export class StudentModule {}
+export class StudentsModule {}
 
-export default StudentModule;
+export default StudentsModule;

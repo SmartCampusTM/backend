@@ -1,13 +1,17 @@
-import { faker } from '@faker-js/faker';
-import { CreateGradesDto } from '@/modules/grades/dtos/create-grade.dto';
+import { CreateGradeDto } from '@modules/grades/dtos/create-grade.dto';
 
-export const grades = (): CreateGradesDto[] => {
-  let classrooms: CreateGradesDto[] = [];
-  for (let i = 0; i < 50; i++) {
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { faker } from '@faker-js/faker';
+
+export const grades = (): CreateGradeDto[] => {
+  const classrooms: CreateGradeDto[] = [];
+  for (let i = 0; i < 50; i + 1) {
     classrooms.push({
-        percentage: faker.number.float({ min: 0, max: 100 }),
+      percentage: faker.number.float({ min: 0, max: 100 }),
     });
   }
 
   return classrooms;
 };
+
+export default grades;
