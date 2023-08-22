@@ -12,11 +12,7 @@ const config: Config = {
   testEnvironment: 'node',
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/$1',
-    '^@controllers/(.*)$': '<rootDir>/controllers/$1',
-    '^@guards/(.*)$': '<rootDir>/guards/$1',
-    '^@modules/(.*)$': '<rootDir>/modules/$1',
-    '^@services/(.*)$': '<rootDir>/services/$1',
-  }
+  },
 };
 
 export default config;

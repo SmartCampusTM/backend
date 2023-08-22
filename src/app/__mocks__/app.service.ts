@@ -1,5 +1,5 @@
 export const AppService = jest.fn().mockReturnValue({
-  getHello: jest.fn().mockReturnValue('Hello World'),
+  sendHeartbeat: jest.fn().mockReturnValue('OK'),
 });
 
 export default AppService;

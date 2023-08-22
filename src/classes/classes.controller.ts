@@ -32,6 +32,7 @@ export default class ClassesController {
     return this.classesService.classes();
   }
 
+  // Add filter
   @Get(':id')
   async findOne(@Param('id') id: string): Promise<Class | null> {
     return this.classesService.findClass(id);

@@ -10,7 +10,7 @@ import { UpdateUserDto } from '@/users/dtos/update-user.dto';
 
 import { userStub } from '../../test/stubs/user.stub';
 
-jest.mock('./users.service');
+jest.mock('@/users/users.service');
 
 describe('UsersController', () => {
   let controller: UsersController;

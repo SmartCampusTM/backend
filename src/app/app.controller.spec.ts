@@ -4,7 +4,7 @@ import AppController from '@/app/app.controller';
 
 import AppService from '@/app/app.service';
 
-jest.mock('@services/app/app.service');
+jest.mock('@/app/app.service');
 
 describe('AppController', () => {
   let controller: AppController;
@@ -22,8 +22,8 @@ describe('AppController', () => {
     jest.clearAllMocks();
   });
 
-  describe('getHello', () => {
-    describe('when getHello is called', () => {
+  describe('sendHeartbeat', () => {
+    describe('when sendHeartbeat is called', () => {
       let hello: string;
 
       beforeEach(async () => {
@@ -31,11 +31,11 @@ describe('AppController', () => {
       });
 
       test('then it should call AppService', () => {
-        expect(service.getHello).toHaveBeenCalled();
+        expect(service.sendHeartbeat).toHaveBeenCalled();
       });
 
-      test("then it should return a 'Hello World' string", () => {
-        expect(hello).toEqual('Hello World');
+      test("then it should return an 'OK' string", () => {
+        expect(hello).toEqual('OK');
       });
     });
   });
