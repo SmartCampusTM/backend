@@ -17,24 +17,6 @@ model User {
   permission     String
 }
 
-model Student {
-  id             String @id @default(auto()) @map("_id") @db.ObjectId
-  email          String @unique
-  name           String
-  lastName       String
-  password       String
-  profilePicture String
-}
-
-model Teacher {
-  id             String @id @default(auto()) @map("_id") @db.ObjectId
-  email          String @unique
-  name           String
-  lastName       String
-  password       String
-  profilePicture String
-}
-
 model Class {
   id          String @id @default(auto()) @map("_id") @db.ObjectId
   teacherId   String @db.ObjectId

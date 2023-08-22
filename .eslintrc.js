@@ -24,6 +24,7 @@ module.exports = {
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
+    'no-plusplus': 'off',
     'import-helpers/order-imports': [
       'warn',
       {
@@ -31,9 +32,11 @@ module.exports = {
         groups: [
           '/^@nestjs/',
           '/^@prisma/',
-          '/^@controllers/',
-          '/^@modules/',
-          '/^@services/',
+          '/^@faker-js/',
+          '/^@\/.+\/.+\.module$/',
+          '/^@\/.+\/.+\.controller$/',
+          '/^@\/.+\/.+\.service$/',
+          '/^@\/.+\/.+\/.+\.dto$/',
         ],
         alphabetize: { order: 'asc', ignoreCase: true },
       },

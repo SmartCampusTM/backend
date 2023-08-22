@@ -21,10 +21,6 @@
     "noFallthroughCasesInSwitch": true,
     "paths": {
       "@/*": ["src/*"],
-      "@controllers/*": ["src/controllers/*"],
-      "@guards/*": ["src/guards/*"],
-      "@modules/*": ["src/modules/*"],
-      "@services/*": ["src/services/*"],
     }
   },
   "include": [

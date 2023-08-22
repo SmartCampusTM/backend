@@ -3,7 +3,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 
 import * as request from 'supertest';
 // eslint-disable-next-line import-helpers/order-imports
-import AppModule from '../src/modules/app/app.module';
+import AppModule from '../src/app/app.module';
 
 describe('AppController (e2e)', () => {
   let app: INestApplication;

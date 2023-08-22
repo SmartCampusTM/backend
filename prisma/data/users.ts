@@ -1,10 +1,11 @@
 import { faker } from '@faker-js/faker';
-import { CreateUserDto } from '@/modules/users/dtos/create-user.dto';
 
-export const users = (): CreateUserDto[] => {
-  let users: CreateUserDto[] = [];
+import { CreateUserDto } from '@/users/dtos/create-user.dto';
+
+const users = (): CreateUserDto[] => {
+  const user: CreateUserDto[] = [];
   for (let i = 0; i < 50; i++) {
-    users.push({
+    user.push({
       email: faker.internet.email(),
       name: faker.person.firstName(),
       lastName: faker.person.lastName(),
@@ -14,5 +15,7 @@ export const users = (): CreateUserDto[] => {
     });
   }
 
-  return users;
+  return user;
 };
+
+export default users;

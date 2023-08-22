@@ -1,8 +1,10 @@
 import { faker } from '@faker-js/faker';
-import { schoolClasses } from './schoolClasses';
-import { CreateClassDto } from '@/modules/classes/dtos/create-class.dto';
 
-export const classes = (): CreateClassDto[] => {
+import { CreateClassDto } from '@/classes/dtos/create-class.dto';
+
+import { schoolClasses } from './schoolClasses';
+
+const classes = (): CreateClassDto[] => {
   const users: CreateClassDto[] = [];
   schoolClasses.forEach((aClass) => {
     users.push({

@@ -1,15 +1,18 @@
 import { faker } from '@faker-js/faker';
-import { CreateClassroomDto } from '@/modules/classrooms/dtos/create-classroom.dto';
 
-export const classrooms = (): CreateClassroomDto[] => {
-  let classrooms: CreateClassroomDto[] = [];
+import { CreateClassroomDto } from '@/classrooms/dtos/create-classroom.dto';
+
+const classrooms = (): CreateClassroomDto[] => {
+  const classroom: CreateClassroomDto[] = [];
   for (let i = 0; i < 50; i++) {
     const number: number = faker.number.int(500);
-    classrooms.push({
-        name: 'L' + number,
-        number: number,
+    classroom.push({
+      name: `L${number}`,
+      number,
     });
   }
 
-  return classrooms;
+  return classroom;
 };
+
+export default classrooms;
