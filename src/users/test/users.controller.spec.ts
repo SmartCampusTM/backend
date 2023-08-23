@@ -8,7 +8,7 @@ import UsersService from '@/users/users.service';
 
 import { UpdateUserDto } from '@/users/dtos/update-user.dto';
 
-import { userStub } from '../../test/stubs/user.stub';
+import { userStub } from '../../../test/stubs/user.stub';
 
 jest.mock('@/users/users.service');
 

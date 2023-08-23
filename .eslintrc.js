@@ -25,6 +25,7 @@ module.exports = {
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
     'no-plusplus': 'off',
+    'class-methods-use-this': 'off',
     'import-helpers/order-imports': [
       'warn',
       {

@@ -8,7 +8,7 @@ import ClassroomsService from '@/classrooms/classrooms.service';
 
 import { UpdateClassroomDto } from '@/classrooms/dtos/update-classroom.dto';
 
-import { classroomStub } from '../../test/stubs/classroom.stub';
+import { classroomStub } from '../../../test/stubs/classroom.stub';
 
 jest.mock('@/classrooms/classrooms.service');
 

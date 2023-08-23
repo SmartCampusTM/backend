@@ -32,7 +32,6 @@ export default class AuthGuard implements CanActivate {
     return true;
   }
 
-  // eslint-disable-next-line class-methods-use-this
   private extractTokenFromHeader(
     request: Request & { headers: CustomHeaders },
   ): string | undefined {

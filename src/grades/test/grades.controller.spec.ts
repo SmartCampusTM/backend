@@ -8,7 +8,7 @@ import GradesService from '@/grades/grades.service';
 
 import { UpdateGradeDto } from '@/grades/dtos/update-grade.dto';
 
-import { gradeStub } from '../../test/stubs/grade.stub';
+import { gradeStub } from '../../../test/stubs/grade.stub';
 
 jest.mock('@/grades/grades.service');
 

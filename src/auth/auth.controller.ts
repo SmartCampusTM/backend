@@ -23,7 +23,6 @@ export default class AuthController {
     return this.authService.signIn(signInDto.username, signInDto.password);
   }
 
-  // eslint-disable-next-line class-methods-use-this
   @UseGuards(AuthGuard)
   @Get('profile')
   getProfile(@Request() req: any) {
