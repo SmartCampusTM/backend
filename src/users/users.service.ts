@@ -21,6 +21,14 @@ export default class UsersService {
     return this.prisma.user.findMany();
   }
 
+  async findUserByEmail(emails: string): Promise<User | null> {
+    return this.prisma.user.findFirst({
+      where: {
+        email: emails,
+      },
+    });
+  }
+
   async findUser(id: string): Promise<User | null> {
     try {
       return await this.prisma.user.findUnique({

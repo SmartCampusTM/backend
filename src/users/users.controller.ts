@@ -7,6 +7,7 @@ import {
   Param,
   Body,
   ValidationPipe,
+  Query,
 } from '@nestjs/common';
 
 import { User } from '@prisma/client';
@@ -28,8 +29,10 @@ export default class UsersController {
   }
 
   @Get()
-  async findAll(): Promise<User[] | null> {
-    return this.usersService.users();
+  async findAll(@Query('email') email?: string): Promise<User | User[] | null> {
+    return email
+      ? this.usersService.findUserByEmail(email)
+      : this.usersService.users();
   }
 
   @Get(':id')
