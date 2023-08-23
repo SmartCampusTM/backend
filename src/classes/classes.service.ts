@@ -21,6 +21,14 @@ export default class ClassesService {
     return this.prisma.class.findMany();
   }
 
+  async classesByTeacher(teacherId: string): Promise<Class[] | null> {
+    return this.prisma.class.findMany({
+      where: {
+        teacherId,
+      },
+    });
+  }
+
   async findClass(id: string): Promise<Class | null> {
     try {
       return await this.prisma.class.findUnique({

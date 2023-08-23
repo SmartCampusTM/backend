@@ -6,6 +6,7 @@ import {
   Param,
   Patch,
   Post,
+  Query,
   ValidationPipe,
 } from '@nestjs/common';
 
@@ -28,11 +29,12 @@ export default class ClassesController {
   }
 
   @Get()
-  async findAll(): Promise<Class[] | null> {
-    return this.classesService.classes();
+  async findAll(@Query('teacher') teacherId?: string): Promise<Class[] | null> {
+    return teacherId
+      ? this.classesService.classesByTeacher(teacherId)
+      : this.classesService.classes();
   }
 
-  // Add filter
   @Get(':id')
   async findOne(@Param('id') id: string): Promise<Class | null> {
     return this.classesService.findClass(id);
